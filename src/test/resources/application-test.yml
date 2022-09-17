@@ -1,4 +1,7 @@
 spring:
+  config:
+    activate:
+      on-profile: test
   datasource:
     driver-class-name: org.h2.Driver
     url: jdbc:h2:mem:blogsearch;DB_CLOSE_DELAY=-1;INIT=CREATE SCHEMA IF NOT EXISTS blogsearch;DATABASE_TO_UPPER=FALSE
