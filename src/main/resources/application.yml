@@ -5,16 +5,20 @@ spring:
     username: sa
     password:
     hikari:
-      idle-timeout: 10000
-      maximum-pool-size: 10
-      minimum-idle: 5
+      maximum-pool-size: 16
       pool-name: BaseHikariPool
   jpa:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.H2Dialect
-        show_sql: true
-        format_sql: true
-        use_sql_comments: true
         hbm2ddl:
           auto: create
+        order_updates: true
+        order_inserts: true
+        jdbc:
+          batch_size: 1000
+blog-search:
+  search-keyword:
+    queue-size: 1000
+    consumer:
+      buffer-size: 1000
