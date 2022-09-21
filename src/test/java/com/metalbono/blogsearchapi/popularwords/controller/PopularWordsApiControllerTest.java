@@ -48,7 +48,7 @@ public class PopularWordsApiControllerTest {
         when(popularWordsService.getPopularWordsTop10()).thenReturn(expected);
 
         // when
-        MvcResult result = mockMvc.perform(MockMvcRequestBuilders.get("/popular-words/top10")
+        MvcResult result = mockMvc.perform(MockMvcRequestBuilders.get("/api/popular-words/top10")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andReturn();
