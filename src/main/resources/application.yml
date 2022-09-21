@@ -1,1 +1,24 @@
-
+spring:
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:blogsearch;DB_CLOSE_DELAY=-1;INIT=CREATE SCHEMA IF NOT EXISTS blogsearch;DATABASE_TO_UPPER=FALSE
+    username: sa
+    password:
+    hikari:
+      maximum-pool-size: 16
+      pool-name: BaseHikariPool
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+        hbm2ddl:
+          auto: create
+        order_updates: true
+        order_inserts: true
+        jdbc:
+          batch_size: 1000
+blog-search:
+  search-keyword:
+    queue-size: 1000
+    consumer:
+      buffer-size: 1000
