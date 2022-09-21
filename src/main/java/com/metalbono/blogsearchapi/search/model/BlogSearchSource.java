@@ -3,16 +3,14 @@ package com.metalbono.blogsearchapi.search.model;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
-import java.util.Map;
-import java.util.Optional;
-
 @Getter
 @RequiredArgsConstructor
 public enum BlogSearchSource {
-    KAKAO(Map.of("sim", "accuracy", "date", "recency")),
-    NAVER(Map.of("accuracy", "sim", "recency", "date"));
+    KAKAO("accuracy", "recency"),
+    NAVER("sim", "date");
 
-    private final Map<String, String> sortMapping;
+    private final String sortAccuracy;
+    private final String sortLatest;
 
     public BlogSearchSource getFallbackType() {
         switch (this) {
@@ -22,9 +20,14 @@ public enum BlogSearchSource {
         }
     }
 
-    public String getMappedSort(String sort) {
-        return Optional.ofNullable(sort)
-                .map(sortMapping::get)
-                .orElse(null);
+    public String getSortStr(BlogSearchSortType sortType) {
+        if (sortType == null) {
+            return null;
+        }
+        switch (sortType) {
+            case ACCURACY -> { return this.sortAccuracy; }
+            case LATEST -> { return this.sortLatest; }
+            default -> { return null; }
+        }
     }
 }

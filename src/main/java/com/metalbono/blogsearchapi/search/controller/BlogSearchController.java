@@ -1,6 +1,7 @@
 package com.metalbono.blogsearchapi.search.controller;
 
 import com.metalbono.blogsearchapi.search.model.BlogSearchResponse;
+import com.metalbono.blogsearchapi.search.model.BlogSearchSortType;
 import com.metalbono.blogsearchapi.search.model.BlogSearchSource;
 import com.metalbono.blogsearchapi.search.model.exception.OpenApiUnavailableException;
 import com.metalbono.blogsearchapi.search.model.request.BlogSearchRequest;
@@ -36,7 +37,7 @@ public class BlogSearchController {
     @GetMapping
     public BlogSearchResponse searchBlog(
             @RequestParam(value = "query") String query,
-            @RequestParam(value = "sort", required = false) String sort,
+            @RequestParam(value = "sort", required = false) BlogSearchSortType sort,
             @RequestParam(value = "source", required = false, defaultValue = "KAKAO") BlogSearchSource source,
             @RequestParam(value = "page", required = false, defaultValue = "1") int page,
             @RequestParam(value = "size", required = false, defaultValue = "10") int size
@@ -48,7 +49,7 @@ public class BlogSearchController {
             return blogSearchServiceFactory.getService(source)
                     .searchBlog(BlogSearchRequest.builder()
                             .query(query)
-                            .sort(sort)
+                            .sort(source.getSortStr(sort))
                             .page(page)
                             .size(size)
                             .build());
@@ -60,7 +61,7 @@ public class BlogSearchController {
             return blogSearchServiceFactory.getService(fallbackSource)
                     .searchBlog(BlogSearchRequest.builder()
                             .query(query)
-                            .sort(fallbackSource.getMappedSort(sort))
+                            .sort(fallbackSource.getSortStr(sort))
                             .page(page)
                             .size(size)
                             .build());
