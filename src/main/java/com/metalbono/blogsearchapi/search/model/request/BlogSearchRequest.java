@@ -9,9 +9,9 @@ import java.nio.charset.StandardCharsets;
 @Getter
 @Builder
 public class BlogSearchRequest {
-    private String query;
-    private String sort;
-    private String source;
-    private int page;
-    private int size;
+    private String query;       // 검색어
+    private String sort;        // 정렬 기준
+    private String source;      // 검색 소스 (Kakao, Naver, ...)
+    private int page;           // 페이지 번호
+    private int size;           // 페이지 크기
 }

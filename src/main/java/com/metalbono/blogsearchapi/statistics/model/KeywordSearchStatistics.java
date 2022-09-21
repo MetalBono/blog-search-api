@@ -15,7 +15,7 @@ import javax.persistence.Table;
 public class KeywordSearchStatistics {
     @Id
     @Column(name = "keyword")
-    private String keyword;
+    private String keyword;     // 검색어
     @Column(name = "count")
-    private Long count;
+    private Long count;         // 검색된 횟수
 }
