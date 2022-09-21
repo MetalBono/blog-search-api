@@ -10,7 +10,7 @@ Java 17 버전에서 동작한다.
 실행하기 (executable jar)
 ---------------------------------------
 아래 경로에서 jar 파일 다운로드 
- * 작성 예정
+ * https://github.com/MetalBono/blog-search-api/raw/master/ext-files/blog-search-api-0.0.1.jar
 
 커맨드로 실행하기
 ```
